@@ -1,3 +1,6 @@
+import authTemplate from './views/auth-page.html';
+import './views/auth-page.css';
+
 const MY_TOKEN: string = 'name';
 
 sessionStorage.setItem('admin', 'admin')
@@ -32,19 +35,7 @@ window.angular.module('authorizationApp', ['ngRoute'])
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider.when('/auth',
       {
-        template: `<div ng-controller="authController">
-        <h1> Страница авторизации </h1>
-        <div class="container">
-            <div class="form-control">
-                <input type="text" placeholder="login" ng-model="login">
-            </div>
-    
-            <div class="form-control">
-                <input type="password" placeholder="Пароль" ng-model="password">
-            </div>
-            <button class="btn" ng-click="check(login, password)">Войти</button>
-        </div>
-    </div> `,
+        template: authTemplate,
         controller: 'authController'
       });
     $routeProvider.when('/main',

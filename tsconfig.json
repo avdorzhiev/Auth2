@@ -15,7 +15,13 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "allowJs": true,
+    "noImplicitThis": false,
   },
+  "typeRoots": [
+    "./node_modules/@types",
+    "./src"
+  ],
   "exclude": [
     "**/node_modules/*"
   ]

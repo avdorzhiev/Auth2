@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -31,36 +30,46 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                loader: 'ts-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                use: {
+                    loader: 'ts-loader',
+                }
             },
             {
                 test: /\.css$/,
-                loader: 'css-loader'
-
+                use: [
+                    'css-loader',
+                ]
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-                loader: 'file-loader'
+                use: {
+                    loader: 'file-loader'
+                }
             },
             {
                 test: /\.html$/,
-                loader:  'raw-loader'
+                use: {
+                    loader: 'html-loader'
+                }
             }
         ]
     },
 
     plugins: [
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
         new HtmlWebpackPlugin({
             template: './src/public/index.html',
-            inject: 'body'
+            inject: 'body',
         }),
-        new CopyWebpackPlugin([{
-            from: __dirname + '/src/public'
-        }]),
-        new MiniCssExtractPlugin({
-            filename: "[name].css"
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: __dirname + '/src/public',
+                to: __dirname + '/dist'
+            }]
         }),
       ]
 }
