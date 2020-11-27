@@ -8,8 +8,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
 
     entry: {
-        // 'polyfills': './polyfills.ts',
-        'app': './src/app/app.ts',
+        angular: './src/angular.js',
+        app: './src/app/app.ts',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

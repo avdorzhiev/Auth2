@@ -1,17 +1,10 @@
-import angular from 'angular'
-// import ngRoute from 'angular-route';
-// import angular from 
-
-
-
 const MY_TOKEN: string = 'name';
 
 sessionStorage.setItem('admin', 'admin')
 sessionStorage.setItem('user', '1234')
 sessionStorage.setItem('Vlad', 'qwerty')
 
-
-angular.module('authorizationApp', ['ngRoute'])
+window.angular.module('authorizationApp', ['ngRoute'])
   .controller('authController', ['$scope',
     function authController($scope) {
       document.title = 'auth';
