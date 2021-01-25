@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="auth.css">
+<div ng-controller="authCtrl">
+    <h1> Страница авторизации </h1>
+    <div class="container">
+        <div class="form-control">
+            <input type="text" placeholder="Username" ng-model="username">
+        </div>
+
+        <div class="form-control">
+            <input type="password" placeholder="Password" ng-model="password">
+        </div>
+        <button class="btn" ng-click="login(username, password)" ng-disabled="!validation()">Login</button>
+    </div>
+
+    <div class="error-container" ng-show="showError">
+        <span>Error 401, wrong login or password</span>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div>
+    <h1> Hello {{ name }}</h1>
+    <button class="btn" ng-click="info()">Информация</button>
+    <button class="btn" ng-click="logout()">Выйти</button>
+
+    <div class="container"  ng-show="showInfo"
+    style="border: 1px #333333 solid; margin-top: 50px;" >
+        <h1>Information</h1>
+        <h2>First name: {{data.firstName}}</h2>
+        <h2>Last name: {{data.lastName}}</h2>
+        <h3>email: {{data.email}}</h3>
+        <h3>Phone: {{data.phone}}</h3>
+        <h3>Expire Date: {{data.lastUpdateFromAssoc | dateFilter}}</h3>
+    </div>
+
+</div>

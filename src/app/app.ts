@@ -1,54 +1,23 @@
-import authTemplate from './views/auth-page.html';
-import './views/auth-page.css';
+sessionStorage.setItem('admin', 'admin');
+sessionStorage.setItem('t_admin', 'danOlXTUjL3P');
+sessionStorage.setItem('Albatros', 'dsz4mmbjIB2a');
+sessionStorage.setItem('user', '1234');
+sessionStorage.setItem('Vlad', 'qwerty');
 
-const MY_TOKEN: string = 'name';
+const authorizationApp = window.angular.module('authorizationApp', ['ngRoute'])
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+        $routeProvider.when('/auth',
+            {
+                template: `<auth-dir></auth-dir>`
+            });
+        $routeProvider.when('/main',
+            {
+                template: `<main-dir></main-dir>`
+            });
 
-sessionStorage.setItem('admin', 'admin')
-sessionStorage.setItem('user', '1234')
-sessionStorage.setItem('Vlad', 'qwerty')
-
-window.angular.module('authorizationApp', ['ngRoute'])
-  .controller('authController', ['$scope',
-    function authController($scope) {
-      document.title = 'auth';
-      $scope.login = ''
-      $scope.password = ''
-      $scope.check = function (login: string, password: string) {
-        if (login.trim() && password.trim()) {
-          if (sessionStorage.getItem(login) == password) {
-            sessionStorage.setItem(MY_TOKEN, login);
-            document.location.href = '/main'
-          }
-          else alert('Неверный логин или пароль')
-        } else alert('Введите логин и пароль!')
-      }
+        $locationProvider.html5Mode(true);
+        $routeProvider.otherwise({ redirectTo: '/auth' });
     }]
-  )
-  .controller('mainController',
-    ['$scope', function mainController($scope) {
-      let name = sessionStorage.getItem(MY_TOKEN);
-      document.title = name;
-      $scope.name = name;
-      $scope.logout = function () { document.location.href = '/auth' }
-    }]
-  )
-  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-    $routeProvider.when('/auth',
-      {
-        template: authTemplate,
-        controller: 'authController'
-      });
-    $routeProvider.when('/main',
-      {
-        template: `<div ng-controller="mainController">
-        <h1> Hello {{ name }}</h1>
-        <button class="btn" ng-click="logout()">Выйти</button>
-    </div>`,
-        controller: 'mainController'
-      });
-    $locationProvider.html5Mode(true);
-    $routeProvider.otherwise({ redirectTo: '/auth' });
-  }]
-  )
+    );
 
-export default 'authorizationApp'
+export default authorizationApp;

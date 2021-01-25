@@ -21,6 +21,12 @@ body {
   padding: 1rem;
 }
 
+.error-container {
+  width: 500px;
+  background-color: lightsalmon;
+  margin: 0 auto;
+}
+
 a {
   text-decoration: none;
 }
@@ -44,11 +50,20 @@ img {
   padding: 0.4rem 1.3rem;
   font-size: 1rem;
   border: none;
-  cursor: pointer;
+  /*cursor: pointer;*/
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
 }
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
 
 .btn:hover {
   opacity: 0.8;
